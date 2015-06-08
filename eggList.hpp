@@ -43,7 +43,7 @@ class LinkedList
 		};
 		
 		
-	// ### Interator ###
+	// ### Iterator ###
 		
 		class Iter
 		{
@@ -84,7 +84,7 @@ class LinkedList
 	
 	public:
 	
-	// ### Constructors and Destructors ###
+	// ### Constructors and Destructor ###
 
 		~LinkedList(); // Destructor (clean up all that dynamic memeory)
 		
@@ -102,7 +102,7 @@ class LinkedList
 		Iter begin() { return Iter(this,0); };
 		Iter end() 	 { return Iter(this,size); };
 
-	// ### OPERATORs ###
+	// ### Operators ###
 
 		const T& operator[] (int index) const // return const Ref to the Data at index
 		{ return at(index); }
@@ -113,7 +113,7 @@ class LinkedList
 };
 
 
-//################################################ Impleantation #######################################################
+//################################################ Implementation #######################################################
 
 /**
  * @brief Destructor
@@ -130,7 +130,7 @@ LinkedList<T>::~LinkedList()
 }
 
 /**
- * @brief Add new data to the frount of List
+ * @brief Add new data to the front of List
  * @param data Data to store
  */
 template <typename T>
@@ -141,8 +141,8 @@ void LinkedList<T>::Push(T data)
 } 
 
 /**
- * @brief Return data from frount of list and removes from list (pop off)
- * @return Copy of the Data that was removed from frount of list
+ * @brief Return data from front of list and removes from list (pop off)
+ * @return Copy of the Data that was removed from front of list
  */
 template <typename T>
 T LinkedList<T>::Pop() 
@@ -157,7 +157,7 @@ T LinkedList<T>::Pop()
 }
 
 /**
- * @brief Return data from frount of list does NOT remove from list
+ * @brief Return data from front of list does NOT remove from list
  * @return Data at the top of the list
  */
 template <typename T>
@@ -170,7 +170,7 @@ T& LinkedList<T>::Peek()
 /**
  * @brief return const Ref to the Data at index
  * @param index
- * @return const Refrence to Data at index
+ * @return const Reference to Data at index
  */
 template <typename T>
 const T& LinkedList<T>::at(int index) const
@@ -186,7 +186,7 @@ const T& LinkedList<T>::at(int index) const
 /**
  * @brief return Ref to the Data at index
  * @param index
- * @return Refrence to Data at index
+ * @return Reference to Data at index
  */
 template <typename T>
 T& LinkedList<T>::at(int index)
