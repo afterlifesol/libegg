@@ -1,3 +1,5 @@
+/*
+ * Needs to be completly rewriten. with 
 /* basic testing file for the Linked List */
 
 #include <stdio.h>
