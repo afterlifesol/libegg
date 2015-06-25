@@ -46,7 +46,7 @@ int main(int argc, char **argv)
 		
 	}
 	
-	cout << endl << ( (11==numbers.Size()) ? "[OK]" : "*ERROR*") <<"\tLList Size containts corrent value. Expected:11  Found:" << numbers.Size() << endl;
+	cout << endl << ( (11==numbers.Size()) ? "[OK]" : "*ERROR*") <<"\tLList Size containts corrent value after ADD. Expected:11  Found:" << numbers.Size() << endl;
 	
 	
 	cout << endl << endl << "[LList Tests Complete]" << endl << endl;
