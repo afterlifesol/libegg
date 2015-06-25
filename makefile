@@ -2,7 +2,7 @@
 OBJS = eggList_Test.o
 
 #will be using c++11 standard
-CXXFLAGS = -std=c++11
+CXXFLAGS = -std=c++11 -Wfatal-errors
 
 #exucutiable in ./bin
 eggList_Test : $(OBJS)

@@ -17,24 +17,24 @@ string working_location = ".";
 
 int main(int argc, char **argv)
 {
-	cout << endl << "Tests for LList" << endl;
+	cout << endl << "Simple Testing for LinkedList" << endl;
 
 	
 	LinkedList<int> numbers;
 	
 	// ### Adding numbers to list
 	cout << endl << "Adding Numbers" << endl;
-	numbers.Push_Back(8);
-	numbers.Push(7);
-	numbers.Push(6);
-	numbers.Push(5);
-	numbers.Push_Back(9);
-	numbers.Push(4);
-	numbers.Push(3);
-	numbers.Push_Back(10);
-	numbers.Push(2);
-	numbers.Push(1);
-	numbers.Push(0);
+	numbers.push(7);
+	numbers.push_back(8);
+	numbers.push(6);
+	numbers.push(5);
+	numbers.push_back(9);
+	numbers.push(4);
+	numbers.push(3);
+	numbers.push_back(10);
+	numbers.push(2);
+	numbers.push(1);
+	numbers.push(0);
 	
 	// ### Checking Stored Numbers
 	cout << endl << "MSG\tStored\tExpected" << endl;
@@ -45,8 +45,7 @@ int main(int argc, char **argv)
 		ti++;
 		
 	}
-	
-	cout << endl << ( (11==numbers.Size()) ? "[OK]" : "*ERROR*") <<"\tLList Size containts corrent value after ADD. Expected:11  Found:" << numbers.Size() << endl;
+	cout << endl << ( (11==numbers.size()) ? "[OK]" : "*ERROR*") <<"\tsize() correct? Expected:11  Found:" << numbers.size() << endl;
 	
 	
 	cout << endl << endl << "[LList Tests Complete]" << endl << endl;
