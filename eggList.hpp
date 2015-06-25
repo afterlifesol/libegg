@@ -68,16 +68,20 @@ class LinkedList
 
         ~LinkedList(); // Destructor (clean up all that dynamic memeory)
 
-    // ### Methods ###
+    // ### Method ###
 
-        void Push(T data);              // Add new data to the frount of List
-        T    Pop();                     // Return data from front of list and removes from list (pop off)
-        T&   Peek();                    // Return Ref to data ay the front of list (does NOT remove from list)
+        // # Stack Methods
+            void Push(T data);              // Add data to the frount of List
+            T    Pop();                     // Return data from front of list and removes from list (pop off)
+            const T&   Peek() const;        // Return Ref to data ay the front of list (does NOT remove from list)
+        
+        void Push_Back(T data);             // Add data to the end of a List
 
-        int Size() {return size;}    // Return how many modes are in the list
 
-        const T& at(int index) const;   // return const Ref to the Data at index
-        T& at(int index);               // return Ref to the Data at index
+        int Size() {return size;}           // Return how many modes are in the list
+
+        const T& at(int index) const;       // return const Ref to the Data at index
+        T& at(int index);                   // return Ref to the Data at index
 
         Iter begin() { return Iter(this,0); };
         Iter end()   { return Iter(this,size); };
@@ -135,16 +139,34 @@ T LinkedList<T>::Pop()
     return data;
 }
 
+
 /**
  * @brief Return data from front of list does NOT remove from list
  * @return Data at the top of the list
  */
 template <typename T>
-T& LinkedList<T>::Peek()
+const T& LinkedList<T>::Peek() const
 {
     if (head == nullptr) throw 0;
     return head->data;
 }
+
+
+template <typename T>
+void LinkedList<T>::Push_Back(T data)
+{
+    if (head == nullptr)
+    {
+        head = new Node(head,data);
+        size++;
+        return;
+    }
+    Node *pTemp = head;
+    while (pTemp->next != nullptr) pTemp = pTemp->next;
+    pTemp->next = new Node(nullptr,data);
+    size++;
+}
+
 
 /**
  * @brief return const Ref to the Data at index

@@ -1,47 +1,54 @@
-/*
- * Needs to be completly rewriten. with 
-/* basic testing file for the Linked List */
+/* Basic LList testing file.. 
+*/ 
 
 #include <stdio.h>
-
 #include <iostream>
 #include <string>
-
-#include "eggList.hpp"
 
 using std::string;
 using std::cout;
 using std::endl;
 
 
+
+#include "eggList.hpp"
+
 string working_location = ".";
 
 int main(int argc, char **argv)
 {
-	cout << "- START: main()-" << endl;
+	cout << endl << "Tests for LList" << endl;
 
 	
 	LinkedList<int> numbers;
 	
-	numbers.Push(1);
-	numbers.Push(20);
-	numbers.Push(35);
+	// ### Adding numbers to list
+	cout << endl << "Adding Numbers" << endl;
+	numbers.Push_Back(8);
+	numbers.Push(7);
+	numbers.Push(6);
+	numbers.Push(5);
+	numbers.Push_Back(9);
 	numbers.Push(4);
-	numbers.Push(500);
-	numbers.Push(605);
-	numbers.Push(777);
-	numbers.Push(81);
-	numbers.Push(900);
-	numbers.Push(10);
-
-
-	cout << "Linked List is curretly storing: " << endl;
-
-
+	numbers.Push(3);
+	numbers.Push_Back(10);
+	numbers.Push(2);
+	numbers.Push(1);
+	numbers.Push(0);
+	
+	// ### Checking Stored Numbers
+	cout << endl << "MSG\tStored\tExpected" << endl;
+	int ti = 0;
 	for (const int i : numbers)
-		cout << "    " << i << endl;
+	{
+		cout << ( (ti==i) ? "[OK]" : "*ERROR*") << "\t" << i << "\t" << ti << endl;
+		ti++;
+		
+	}
+	
+	cout << endl << ( (11==numbers.Size()) ? "[OK]" : "*ERROR*") <<"\tLList Size containts corrent value. Expected:11  Found:" << numbers.Size() << endl;
 	
 	
-	cout << "- END: main()-" << endl;
+	cout << endl << endl << "[LList Tests Complete]" << endl << endl;
 	return 0;
 }
