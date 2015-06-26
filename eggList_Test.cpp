@@ -80,9 +80,11 @@ int main(int argc, char **argv)
 
 
 
-	section("checking empty list")
+
+	section("checking empty list");
 	checkline( true==numbers.empty() , "\tIs list empty? \tExpected:1 (true) \tFound:", numbers.empty() );
 	checkline( 0==numbers.size() , "\tsize() Test \tExpected:0 \tFound:",numbers.size() );
+
 
 
 
@@ -114,7 +116,9 @@ int main(int argc, char **argv)
 	checkline( 11==numbers.size() , "\tsize() Test \tExpected:11 \tFound:",numbers.size() );
 
 
-
+	section("Checking front and back");
+	checkline( 0==numbers.front(), "\tsize() Test \tExpected:0 \tFound:",numbers.front() );
+	checkline( 10==numbers.back() , "\tsize() Test \tExpected:10 \tFound:",numbers.back() );
 
 
 	
@@ -133,6 +137,9 @@ int main(int argc, char **argv)
 	checkline( 9==numbers.size() , "\tsize() Test \tExpected:9 \tFound:",numbers.size() );
 	
 
+	section("Checking front and back");
+	checkline( 1==numbers.front(), "\tsize() Test \tExpected:1 \tFound:",numbers.front() );
+	checkline( 9==numbers.back() , "\tsize() Test \tExpected:9 \tFound:",numbers.back() );
 
 
 
@@ -152,6 +159,9 @@ int main(int argc, char **argv)
 	checkline( 6==numbers.size() , "\tsize() Test \tExpected:6 \tFound:",numbers.size() );
 
 
+	section("Checking front and back");
+	checkline( 4==numbers.front(), "\tsize() Test \tExpected:4 \tFound:",numbers.front() );
+	checkline( 9==numbers.back() , "\tsize() Test \tExpected:9 \tFound:",numbers.back() );
 
 
 
@@ -172,11 +182,22 @@ int main(int argc, char **argv)
 	checkline( false==numbers.empty() , "\tIs list empty? Expected:0 (false)  Found:", numbers.empty() );
 
 
+	section("Checking front and back");
+	checkline( 4==numbers.front(), "\tsize() Test \tExpected:4 \tFound:",numbers.front() );
+	checkline( 6==numbers.back() , "\tsize() Test \tExpected:6 \tFound:",numbers.back() );
+
+
 
 
 	section("Clearing List");
 	numbers.clear();
-	checkline( true==numbers.empty() , "\tIs list empty? Expected:1 (true)  Found:", numbers.empty() );
+
+
+
+
+	section("checking empty list");
+	checkline( true==numbers.empty() , "\tIs list empty? \tExpected:1 (true) \tFound:", numbers.empty() );
+	checkline( 0==numbers.size() , "\tsize() Test \tExpected:0 \tFound:",numbers.size() );
 
 
 

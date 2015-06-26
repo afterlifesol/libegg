@@ -237,7 +237,7 @@ void LinkedList<value_type>::pop_back()
 
 
 /**
- * front()
+ * const front()
  * @brief Return a refence to the front of list
  * @return Refence to the element at front of the list
  */
@@ -249,6 +249,33 @@ const value_type& LinkedList<value_type>::front() const
 }
 
 
+/**
+ * front()
+ * @brief Return a refence to the front of list
+ * @return Refence to the element at front of the list
+ */
+template <typename value_type>
+value_type& LinkedList<value_type>::front()
+{
+    if (head == nullptr) throw out_of_range("Attempted to peek() an empty list");
+    return head->val;
+}
+
+
+
+/**
+ * const back()
+ * @brief Return a refence to the back of list
+ * @return Refence to the element at back of the list
+ */
+template <typename value_type>
+const value_type& LinkedList<value_type>::back() const
+{
+    if (tail == nullptr) throw out_of_range("Attempted to peek() an empty list");
+    return tail->val;
+}
+
+
 
 /**
  * back()
@@ -256,7 +283,7 @@ const value_type& LinkedList<value_type>::front() const
  * @return Refence to the element at back of the list
  */
 template <typename value_type>
-const value_type& LinkedList<value_type>::back() const
+value_type& LinkedList<value_type>::back()
 {
     if (tail == nullptr) throw out_of_range("Attempted to peek() an empty list");
     return tail->val;
