@@ -7,18 +7,12 @@
 
 using std::string;
 using std::cout;
+using std::flush;
 using std::endl;
 using std::ostream;
 
 
-
 #include "eggList.hpp"
-
-
-
-
-
-
 
 
 
@@ -67,6 +61,10 @@ void header(string msg)
 { cout << COLOR_BOLD_BLUE << msg << COLOR_RESET << endl; }
 
 
+void note(string msg)
+{ cout << COLOR_BOLD_YELLOW << msg << COLOR_RESET << endl; }
+
+
 
 
 
@@ -75,10 +73,16 @@ void header(string msg)
 int main(int argc, char **argv)
 {
 	cout << endl << endl << endl << endl;
-	header("Simple Testing for LinkedList");
+	note("[Testing LinkedList]");
 	cout << endl;
 
 	LinkedList<int> numbers;
+
+
+
+	section("checking empty list")
+	checkline( true==numbers.empty() , "\tIs list empty? \tExpected:1 (true) \tFound:", numbers.empty() );
+	checkline( 0==numbers.size() , "\tsize() Test \tExpected:0 \tFound:",numbers.size() );
 
 
 
@@ -169,15 +173,18 @@ int main(int argc, char **argv)
 
 
 
+
 	section("Clearing List");
 	numbers.clear();
 	checkline( true==numbers.empty() , "\tIs list empty? Expected:1 (true)  Found:", numbers.empty() );
-	
 
 
 
 
-	
-	cout << endl << endl << "[LList Tests Complete]" << endl << endl;
+
+	cout << endl;
+	note("[LList Tests Complete]");
+	cout << endl << endl;
+
 	return 0;
 }

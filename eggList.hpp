@@ -80,7 +80,7 @@ class LinkedList
         //crend()     // Return const_reverse_iterator to reverse end
 
     // ### Capacity ###
-        bool empty()    { return nodes==0; }        // Test whether container is empty 
+        bool empty()    { return (0 == nodes); }        // Test whether container is empty 
         int  size()     { return nodes; }           // Return size 
         //int max_size();     // Return maximum size
 
@@ -130,6 +130,9 @@ class LinkedList
 
         value_type& operator[] (int index)               // return Ref to the Data at index
             { return at(index); }
+
+    // #### DEBUG 
+        void consistency_test();
 };
 
 
@@ -138,7 +141,7 @@ class LinkedList
 
 
 /**
- * clear
+ * clear()
  * @brief clears the list and frees memory
  * @param void
  * @return void
@@ -146,21 +149,22 @@ class LinkedList
 template <typename value_type>
 void LinkedList<value_type>::clear() noexcept
 {
+    if (head == nullptr) return;
+    node *temp = head;
     while (head != nullptr)
     {
-        node *temp = head;
+        temp = head;
         head = head->next;
         delete temp;
     }
     head = tail = nullptr;
-    nodes = 0;
-    
+    nodes = 0;   
 }
 
 
 
 /**
- * push_front
+ * push_front(*)
  * @brief Add a new value to front of list
  * @param val value to add to front of list
  * @return void
@@ -176,7 +180,7 @@ void LinkedList<value_type>::push_front(const value_type& val)
 
 
 /**
- * push_back
+ * push_back(*)
  * @brief Add a new value to back of list
  * @param val value to add to back of list
  * @return void
@@ -192,7 +196,7 @@ void LinkedList<value_type>::push_back(const value_type& val)
 
 
 /**
- * pop_front
+ * pop_front()
  * @brief remove element from front of list
  * @param void
  * @return void
@@ -201,8 +205,11 @@ template <typename value_type>
 void LinkedList<value_type>::pop_front()
 {
     if (head == nullptr) return;
+    
+    
     node *temp = head;
     head = head->next;
+    head->prev = nullptr;
     delete temp;
     nodes--;
    
@@ -211,7 +218,7 @@ void LinkedList<value_type>::pop_front()
 
 
 /**
- * pop_back
+ * pop_back()
  * @brief remove element from back of list
  * @param void
  * @return void
@@ -222,6 +229,7 @@ void LinkedList<value_type>::pop_back()
     if (tail == nullptr) return;
     node *temp = tail;
     tail = tail->prev;
+    tail->next = nullptr;
     delete temp;
     nodes--;
 }
