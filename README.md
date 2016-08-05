@@ -1,15 +1,14 @@
 # libegg
 
-	Still in process of setting up!
-
-	C++14 std basic tools and data structures
+	C++14 STD tools and data structures.
+    
 
 ## eggList (eggList.hpp)
 	
-	Linked list (single linked) and Stack data structure template
-	supports c++14 for range, and array style syntaxes
+	Simple Linked list (Single links) and Stack data structure template
+	support for c++14's range based for looping, and array style access syntax.
 
-	<template> LList (currenly doesn't support pointers as storage type)
+	<template> LList Note: currenly doesn't support pointers as storage type
 	
 		Supports Methods
 			Push(*);
@@ -24,6 +23,5 @@
 			Will throw expections on out of index errors.
 	
 
-	
 
 

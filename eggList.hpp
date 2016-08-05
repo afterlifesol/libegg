@@ -7,19 +7,19 @@
 using std::out_of_range;
 using std::invalid_argument;
 
-//################################################ Header #######################################################
+//############################  LinkedList Header  ############################
 /**
- * @class LinkedList
+ * @class MLinkedList
  * @author afterlifesol
  * @date 05/06/15
  * @file EggCollection.cpp
- * @brief One way Dynamic Node based Linked List
+ * @brief One way Dynamic Node based Managed Linked List
  */
 template <typename value_type>
 class LinkedList
 {
     private:
-    // ### Internal Node class ### -- Implemented Inline
+    // ### private internal node class ### -- Implemented Inline
         struct node {
             public:
             node *next = nullptr;
@@ -29,6 +29,7 @@ class LinkedList
         };
 
     // ### Iterator ### -- Implemented Inline
+    // TODO: see about cleaning this up.
     public: 
         class Iter
         {
@@ -107,7 +108,7 @@ class LinkedList
         void clear() noexcept;                  // Clear content
 
     // ### Stack Factions ###
-        void push(const value_type& val) { push_front(val); }      // Insert element at beginning
+        void push(const value_type& val) { push_front(val); }   // Insert element at beginning
         void pop() { pop_front(); }                             // Delete first element
         const value_type& peek() const { return front(); }      // Access top element
 
@@ -136,8 +137,7 @@ class LinkedList
 };
 
 
-//################################################ Implementation #######################################################
-
+//######################  MLinkedList Implementation  ##########################
 
 
 /**
@@ -150,13 +150,7 @@ template <typename value_type>
 void LinkedList<value_type>::clear() noexcept
 {
     if (head == nullptr) return;
-    node *temp = head;
-    while (head != nullptr)
-    {
-        temp = head;
-        head = head->next;
-        delete temp;
-    }
+    delete head;
     head = tail = nullptr;
     nodes = 0;   
 }
@@ -205,14 +199,12 @@ template <typename value_type>
 void LinkedList<value_type>::pop_front()
 {
     if (head == nullptr) return;
-    
-    
     node *temp = head;
     head = head->next;
     head->prev = nullptr;
+    temp->next = temp->prev = nullptr;
     delete temp;
     nodes--;
-   
 }
 
 
@@ -230,6 +222,7 @@ void LinkedList<value_type>::pop_back()
     node *temp = tail;
     tail = tail->prev;
     tail->next = nullptr;
+    temp->prev = temp->next = nullptr;
     delete temp;
     nodes--;
 }
@@ -244,7 +237,7 @@ void LinkedList<value_type>::pop_back()
 template <typename value_type>
 const value_type& LinkedList<value_type>::front() const
 {
-    if (head == nullptr) throw out_of_range("Attempted to peek() an empty list");
+    if (head == nullptr) throw out_of_range("Attempted to access an empty list");
     return head->val;
 }
 
@@ -257,7 +250,7 @@ const value_type& LinkedList<value_type>::front() const
 template <typename value_type>
 value_type& LinkedList<value_type>::front()
 {
-    if (head == nullptr) throw out_of_range("Attempted to peek() an empty list");
+    if (head == nullptr) throw out_of_range("Attempted to access an empty list");
     return head->val;
 }
 
@@ -271,7 +264,7 @@ value_type& LinkedList<value_type>::front()
 template <typename value_type>
 const value_type& LinkedList<value_type>::back() const
 {
-    if (tail == nullptr) throw out_of_range("Attempted to peek() an empty list");
+    if (tail == nullptr) throw out_of_range("Attempted to access an empty list");
     return tail->val;
 }
 
@@ -285,7 +278,7 @@ const value_type& LinkedList<value_type>::back() const
 template <typename value_type>
 value_type& LinkedList<value_type>::back()
 {
-    if (tail == nullptr) throw out_of_range("Attempted to peek() an empty list");
+    if (tail == nullptr) throw out_of_range("Attempted to access an empty list");
     return tail->val;
 }
 

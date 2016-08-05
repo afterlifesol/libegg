@@ -5,10 +5,18 @@ OBJS = eggList_Test.o
 CXXFLAGS = -std=c++11 -Wfatal-errors
 
 #exucutiable in ./bin
-eggList_Test : $(OBJS)
+eggList : $(OBJS)
 		@mkdir -p bin
 		$(CXX) $(CXXFLAGS)   -o bin/eggList_Test eggList_Test.cpp
 		@echo "Build - [OK]"
+
+
+#exucutiable in ./bin
+Test : $(OBJS)
+		@mkdir -p bin
+		$(CXX) $(CXXFLAGS)   -o bin/eggList_Test eggList_Test.cpp
+		@echo "Build - [OK]"
+		@./bin/eggList_Test
 	
 .PHONY : clean
 clean:
