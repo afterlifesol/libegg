@@ -1,5 +1,5 @@
-#ifndef _egglibStack_hpp_INCLUDED_
-#define _egglibStack_hpp_INCLUDED_
+#ifndef _libeggStack_hpp_INCLUDED_
+#define _libeggStack_hpp_INCLUDED_
 
 //#include <exception>
 #include <stdexcept>
@@ -170,4 +170,4 @@ template <typename T> T& Stack<T>::top()
 
 } // endnamespace
 
-#endif // _egglibStack_hpp_INCLUDED_
+#endif // _libeggStack_hpp_INCLUDED_

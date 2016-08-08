@@ -11,7 +11,7 @@ using std::endl;
 #include <limits>
 // OFOR: std::numeric_limits<Type>::min() / max()
 
-#include "egglibCheck.h"
+#include "libeggCheck.h"
 using namespace egg;
 
 template <typename A, typename B> bool addsafe(A a, B b)

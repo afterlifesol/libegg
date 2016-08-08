@@ -8,10 +8,10 @@ using std::flush;
 
 int main(int argc, char** argv)
 {
-    cout << "Running Test on egglib" << endl << flush;
-    cout << "egglibStack" << endl << flush;
-    //TestStack();
-    cout << "egglibList" << endl << flush;
+    cout << "Running Test on libegg" << endl << flush;
+    cout << "libeggStack" << endl << flush;
+    TestStack();
+    cout << "libeggList" << endl << flush;
     TestList();
     return 0;
 }

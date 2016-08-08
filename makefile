@@ -1,34 +1,34 @@
 #Objects needed to build the test file
-OBJS = TestList.o TestStack.o egglibTest.o egglibInfo.o
+OBJS = TestList.o TestStack.o libeggTest.o libeggInfo.o
 
 #will be using c++11 standard
 CXXFLAGS = -std=c++11 -Wfatal-errors
 
-all : egglibInfo egglibTest
+all : libeggInfo libeggTest
 
 #exucutiable in ./bin
-egglibInfo : 
+libeggInfo : 
 		@mkdir -p bin
-		$(CXX) $(CXXFLAGS)   -o bin/egglibInfo egglibInfo.cpp
+		$(CXX) $(CXXFLAGS)   -o bin/libeggInfo libeggInfo.cpp
 		@echo "Build - [OK]"
 
 #exucutiable in ./bin
-eggInfo : egglibInfo.o
-		@./bin/egglibInfo
+eggInfo : libeggInfo.o
+		@./bin/libeggInfo
 
 
 TestList : TestList.o
 TestStack : TestStack.o
 
 #exucutiable in ./bin
-egglibTest : TestList.o TestStack.o egglibTest.o
+libeggTest : TestList.o TestStack.o libeggTest.o
 		@mkdir -p bin
-		$(CXX) $(CXXFLAGS)   -o bin/egglibTest TestList.o TestStack.o egglibTest.o
+		$(CXX) $(CXXFLAGS)   -o bin/libeggTest TestList.o TestStack.o libeggTest.o
 		@echo "Build - [OK]"
 
 #exucutiable in ./bin
-eggTest : egglibTest
-		@./bin/egglibTest
+eggTest : libeggTest
+		@./bin/libeggTest
 
 .PHONY : clean
 clean:

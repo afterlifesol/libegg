@@ -1,5 +1,5 @@
-#ifndef _egglibList_hpp_INCLUDED_
-#define _egglibList_hpp_INCLUDED_
+#ifndef _libeggList_hpp_INCLUDED_
+#define _libeggList_hpp_INCLUDED_
 
 //#include <exception>
 #include <stdexcept>
@@ -373,4 +373,4 @@ template <typename value_type> value_type& LinkedList<value_type>::at(int index)
     return temp->val;
 }
 
-#endif // _egglibList_hpp_INCLUDED_
+#endif // _libeggList_hpp_INCLUDED_

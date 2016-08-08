@@ -1,5 +1,5 @@
-#ifndef _egglibCheck_h_INCLUDED_
-#define _egglibCheck_h_INCLUDED_
+#ifndef _libeggCheck_h_INCLUDED_
+#define _libeggCheck_h_INCLUDED_
 
 #include <iostream>
 using std::cout;
@@ -38,7 +38,11 @@ namespace egg
 
 #define COLOR_RESET "\033[0m"
 
-template <typename T> void eggChk(T expected, T got, const char* Message, int mcolw = 25, int colw = 5)
+
+static int TestCol=6;
+static int TestMCol=25;
+
+template <typename T> void eggChk(T expected, T got, const char* Message, int mcolw = TestMCol, int colw = TestCol)
 {
     bool good = (expected == got);
 
@@ -65,4 +69,4 @@ template <typename T> void eggChk(T expected, T got, const char* Message, int mc
 
 } // close namespace egg
 
-#endif // _egglibCheck_h_INCLUDED_
+#endif // _libeggCheck_h_INCLUDED_
