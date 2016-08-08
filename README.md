@@ -1,110 +1,89 @@
 # libegg
+C++11 tools and data structures
 
-	C++14 STD tools and data structures.
+---
 
-## eggInfo
+## Tools about types
 
-    Displays basic infromation about "type"s
-        Min / Max / Size(Bytes)
+---
 
-## eggList (eggList.hpp)
+#### libeggInfo
 
-    LinkedList
-        Simple Linked list (Single links)
-        Support for c++14's range based for looping
-        Array style access syntax.
+Compile time information about data types: Minimum, maximum and size.
+Covers most basic data types. Useful when testing difference architectures.
 
-    template <typename T> class LinkedList
+## Math tools
 
-    *** Iterator ***
+---
 
-        Iter begin()                        // Return iterator to beginning
-        Iter end()                          // Return iterator to end
-        //rbegin()                          // Return reverse iterator to reverse beginning
-        //rend()                            // Return reverse iterator to reverse end
-        //cbegin()                          // Return const_iterator to beginning
-        //cend()                            // Return const_iterator to end
-        //crbegin()                         // Return const_reverse_iterator to reverse beginning
-        //crend()                           // Return const_reverse_iterator to reverse end
+#### libeggMath
 
-    *** Capacity ***
-        bool empty()                        // Test whether container is empty
-        int  size()                         // Return size
-        //int max_size();                   // Return maximum size
+Math and associated support tools.
+Check for overflow before operations for very sensitive data
 
-    *** Element access ***
-        const value_type& front() const;    // Access first element
-        value_type& front();                // Access first element
-        const value_type& back() const;     // Access last element
-        value_type& back();                 // Access last element
+```C++
+    if safeadd(a,b) sum = a+b;
+    else handle Overflow();
+```
 
-    *** Modifiers ***
-        //assign                                 // Assign new content to container
-        //emplace_front                          // Construct and insert element at beginning
-        void push_front(const value_type& val);  // Insert element at beginning
-        void pop_front();                        // Delete first element
-        //emplace_back                           // Construct and insert element at the end
-        void push_back(const value_type& val);   // Add element at the end
-        void pop_back();                         // Delete last element
-        //emplace                                // Construct and insert element
-        //insert                                 // Insert elements
-        //erase                                  // Erase elements
-        //swap                                   // Swap content
-        //resize                                 // Change size
-        void clear()                             // Clear content
+## Containers
 
-    *** Stack Factions ***
-        void push(const value_type& val)            // Insert element at beginning
-        void pop()                                  // Delete first element
-        const value_type& peek() const              // Access top element
+---
 
-    *** Random Access Operators ***
-        const value_type& at(int index) const;       // return const Ref to the Data at index
-        value_type& at(int index);                   // return Ref to the Data at index
+#### libeggList
 
-	*** Array Type [index] Operatiors ***
-        const value_type& operator[] (int index) const   // return const Ref to the Data at index
-        value_type& operator[] (int index)               // return Ref to the Data at index
+dynamic node based simple LinkedList template
 
-    *** Expextions ***
-		Will throw expections on out of index errors
+**support**
+
+ - for c++11 range based for
+ - array style random access by index
+ - Iterator begin and end
+ - stack access members
+ - c++ exemptions
+ 
+**soon**
+
+- emplace
+
+#### libeggStack
+
+dynamic node based simple stack template
+
+  **support**
+  - c++ exemptions
+
+  **soon**
+  - for c++11 range based for
+  - iterators
+  - emplace
+  - array basic
+
+## Logging
+
+---
+
+#### libeggLog
+
+Tools to support logging to file and debugging.
+
+## Testing Support
+
+---
+
+#### libeggCheck
+
+Tools to help with unit tests and testing in general
+
+#### libeggTest
+
+Calls all tests for libegg
+
+#### TestList
+Tests for LinkedList
+
+#### TestStack
+Tests for Stack
 
 
-## eggStack (eggStack.hpp)
 
-    Stack
-        Simple Stack Template
-
-    template <typename T> class Stack
-
-    *** Capacity ***
-        bool empty()                        // Check if stack is empty
-        int size()                          // Return number of item in the stack
-
-    *** Element access ***
-        const T& top() const;               // Access top element
-        T& top();                           // Access top element
-
-    *** Modifiers ***
-        // emplace_top()                    // Construct and insert element at top
-        void clear()                        // Clear the stack
-
-    *** Stack Factions ***
-        void push(const T& val);            // Insert element at beginning
-        void pop();                         // Delete first element
-        const T& peek() const               // Access top element
-        T& peek()                           // Access top element const
-
-    *** Expextions ***
-            Will throw expections on access of invalid top
-
-    *** TODO ***
-        Iters
-            Support C++11/14's range based for
-        emplace_top(*)
-
-## eggList_Test (eggList_Test.cpp)
-        Tests for LinkedList
-
-## eggList_Stack (eggStack_Test.cpp)
-        Tests for Stack
