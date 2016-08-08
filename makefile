@@ -1,38 +1,88 @@
-#Objects needed to build the test file
-OBJS = TestList.o TestStack.o libeggTest.o libeggInfo.o
+#
+# Compiler flags
+#
 
-#will be using c++11 standard
-CXXFLAGS = -std=c++11 -Wfatal-errors
-
-all : libeggInfo libeggTest
-
-#exucutiable in ./bin
-libeggInfo : 
-		@mkdir -p bin
-		$(CXX) $(CXXFLAGS)   -o bin/libeggInfo libeggInfo.cpp
-		@echo "Build - [OK]"
-
-#exucutiable in ./bin
-eggInfo : libeggInfo.o
-		@./bin/libeggInfo
+# -Wfatal-errors -Werror
+CXXFLAGS = -std=c++11 -Wall -Wextra
 
 
-TestList : TestList.o
-TestStack : TestStack.o
+#
+# Project files
+#
+SRCS = libeggTest.cpp TestList.cpp TestStack.cpp
+OBJS = $(SRCS:.cpp=.o)
 
-#exucutiable in ./bin
-libeggTest : TestList.o TestStack.o libeggTest.o
-		@mkdir -p bin
-		$(CXX) $(CXXFLAGS)   -o bin/libeggTest TestList.o TestStack.o libeggTest.o
-		@echo "Build - [OK]"
 
-#exucutiable in ./bin
-eggTest : libeggTest
-		@./bin/libeggTest
+#
+# exucutiabls
+#
+EXE  = libeggTest
 
-.PHONY : clean
+
+#
+# Debug build settings
+#
+DBGDIR = debug
+DBGEXE = $(DBGDIR)/$(EXE)
+DBGOBJS = $(addprefix $(DBGDIR)/, $(OBJS))
+DBGCFLAGS = -g3 -O0 -DDEBUG
+
+
+#
+# Release build settings
+#
+RELDIR = bin
+RELEXE = $(RELDIR)/$(EXE)
+RELOBJS = $(addprefix $(RELDIR)/, $(OBJS))
+RELCFLAGS = -O3 -DNDEBUG
+
+.PHONY: all clean debug prep release remake
+
+# Default build
+all: prep release
+
+#
+# Debug rules
+#
+debug: $(DBGEXE)
+
+$(DBGEXE): $(DBGOBJS)
+	$(CXX) $(CXXFLAGS) $(DBGCFLAGS) -o $(DBGEXE) $^
+
+$(DBGDIR)/%.o: %.cpp
+	$(CXX) -c $(CXXFLAGS) $(DBGCFLAGS) -o $@ $<
+
+#
+# Release rules
+#
+release: $(RELEXE)
+
+$(RELEXE): $(RELOBJS)
+	$(CXX) $(CXXFLAGS) $(RELCFLAGS) -o $(RELEXE) $^
+
+$(RELDIR)/%.o: %.cpp
+	$(CXX) -c $(CXXFLAGS) $(RELCFLAGS) -o $@ $<
+
+#
+# Other rules
+#
+prep:
+	@mkdir -p $(DBGDIR) $(RELDIR)
+
+remake: clean all
+
 clean:
-		@rm -f $(OBJS)
-		@rm -f ./bin/*
-		@rmdir bin
-		@echo "clean - [OK]"
+	rm -f $(RELEXE) $(RELOBJS) $(DBGEXE) $(DBGOBJS)
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
