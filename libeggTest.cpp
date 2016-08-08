@@ -6,7 +6,7 @@ using std::flush;
 #include "TestList.h"
 #include "TestStack.h"
 
-int main(int argc, char** argv)
+int main()
 {
     cout << "Running Test on libegg" << endl << flush;
     cout << "libeggStack" << endl << flush;

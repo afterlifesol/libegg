@@ -1,6 +1,10 @@
 #ifndef _libeggList_hpp_INCLUDED_
 #define _libeggList_hpp_INCLUDED_
 
+#include <iostream>
+using namespace std;
+
+
 //#include <exception>
 #include <stdexcept>
 using std::out_of_range;
@@ -199,11 +203,15 @@ public:
 template <typename value_type> void LinkedList<value_type>::clear() noexcept
 {
     if(head == nullptr)
+    {
+        assert(head==nullptr);
         return;
+    }
     delete head;
     head = tail = nullptr;
     nodes = 0;
 }
+
 
 /**
  * push_front(*)
@@ -213,17 +221,38 @@ template <typename value_type> void LinkedList<value_type>::clear() noexcept
  */
 template <typename value_type> void LinkedList<value_type>::push_front(const value_type& val)
 {
-    if(head == nullptr)
-    {
+    if(head == nullptr) {
         assert(tail==nullptr);
         head = tail = new node(val, nullptr, nullptr);
     }
-    else
-    {
+    else {
         head = head->prev = new node(val, head, nullptr);
     }
     nodes++;
 }
+
+
+/**
+ * pop_front()
+ * @brief remove element from front of list
+ * @param void
+ * @return void
+ */
+template <typename value_type> void LinkedList<value_type>::pop_front()
+{
+    if(!head) {
+        assert(!tail);
+        return;
+    }
+    auto *tp = head;
+    head=head->next;
+    if (head) head->prev = nullptr;
+    tp->next = tp->prev = nullptr;
+    delete tp;
+    if (!head) tail=nullptr;
+    nodes--;    
+}
+
 
 /**
  * push_back(*)
@@ -243,26 +272,6 @@ template <typename value_type> void LinkedList<value_type>::push_back(const valu
     nodes++;
 }
 
-/**
- * pop_front()
- * @brief remove element from front of list
- * @param void
- * @return void
- */
-template <typename value_type> void LinkedList<value_type>::pop_front()
-{
-    if(head == nullptr) {
-        assert(tail==nullptr);
-        return;
-    }
-    auto tp = head;
-    head = head->next;
-    head->prev = nullptr;
-    tp->next = tp->prev = nullptr;
-    delete tp;
-    nodes--;
-    if (head==nullptr) tail=nullptr;
-}
 
 /**
  * pop_back()
@@ -272,20 +281,20 @@ template <typename value_type> void LinkedList<value_type>::pop_front()
  */
 template <typename value_type> void LinkedList<value_type>::pop_back()
 {
-    if(tail == nullptr)
+    if(!tail)
     {
-        assert(head==nullptr);
+        assert(!head);
         return;
-        
     }
     node* tp = tail;
     tail = tail->prev;
-    tail->next = nullptr;
+    if (tail) tail->next = nullptr;
     tp->prev = tp->next = nullptr;
     delete tp;
     nodes--;
-    if (tail==nullptr) head=nullptr;
+    if (!tail) head=nullptr;
 }
+
 
 /**
  * const front()
@@ -294,10 +303,14 @@ template <typename value_type> void LinkedList<value_type>::pop_back()
  */
 template <typename value_type> const value_type& LinkedList<value_type>::front() const
 {
-    if(head == nullptr)
+    if(head == nullptr) {
+        assert(tail==nullptr);
         throw out_of_range("Attempted to access an empty list");
+    }
+
     return head->val;
 }
+
 
 /**
  * front()
@@ -307,7 +320,10 @@ template <typename value_type> const value_type& LinkedList<value_type>::front()
 template <typename value_type> value_type& LinkedList<value_type>::front()
 {
     if(head == nullptr)
+    {
+        assert(tail==nullptr);
         throw out_of_range("Attempted to access an empty list");
+    }
     return head->val;
 }
 
@@ -319,7 +335,10 @@ template <typename value_type> value_type& LinkedList<value_type>::front()
 template <typename value_type> const value_type& LinkedList<value_type>::back() const
 {
     if(tail == nullptr)
+    {
+        assert(head==nullptr);
         throw out_of_range("Attempted to access an empty list");
+    }
     return tail->val;
 }
 
@@ -331,7 +350,10 @@ template <typename value_type> const value_type& LinkedList<value_type>::back() 
 template <typename value_type> value_type& LinkedList<value_type>::back()
 {
     if(tail == nullptr)
+    {
+        assert(head==nullptr);
         throw out_of_range("Attempted to access an empty list");
+    }
     return tail->val;
 }
 
