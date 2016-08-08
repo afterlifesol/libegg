@@ -1,0 +1,5 @@
+#Ignore some temp directorys and project files
+project_files/
+bin/
+backup/
+

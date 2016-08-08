@@ -1,5 +1,5 @@
-#ifndef _eggStack_hpp_INCLUDED_
-#define _eggStack_hpp_INCLUDED_
+#ifndef _egglibStack_hpp_INCLUDED_
+#define _egglibStack_hpp_INCLUDED_
 
 //#include <exception>
 #include <stdexcept>
@@ -64,7 +64,8 @@ private:
         node(const T& Data, node* pnode)
             : data(Data)
             , next(pnode)
-        {}
+        {
+        }
         ~node()
         {
             if(next != nullptr)
@@ -72,10 +73,10 @@ private:
         }
     };
 
-    node *_head = nullptr;
+    node* _head = nullptr;
     int _size = 0;
-    
-// ### Constructors and Destructor ###000
+
+    // ### Constructors and Destructor ###000
 public:
     ~Stack()
     {
@@ -84,40 +85,39 @@ public:
     }
 
     // ### Capacity ###
-    
-    bool empty()                        // Check if stack is empty
+
+    bool empty() // Check if stack is empty
     {
         return (_head == nullptr);
     }
- 
-    
-    int size()                          // Return number of item in the stack
+
+    int size() // Return number of item in the stack
     {
         return _size;
     }
 
     // ### Element access ###
-    const T& top() const;               // Access top element
-    T& top();                           // Access top element
+    const T& top() const; // Access top element
+    T& top();             // Access top element
 
     // ### Modifiers ###
     // emplace_top()                    // Construct and insert element at top
-    void clear()                        // Clear the stack
+    void clear() // Clear the stack
     {
         if(_head != nullptr)
             delete _head;
         _head = nullptr;
-        _size=0;
+        _size = 0;
     }
 
     // ### Stack Factions ###
-    void push(const T& val);            // Insert element at beginning
-    void pop();                         // Delete first element
-    const T& peek() const               // Access top element
+    void push(const T& val); // Insert element at beginning
+    void pop();              // Delete first element
+    const T& peek() const    // Access top element
     {
         return top();
-    } 
-    T& peek()                           // Access top element const
+    }
+    T& peek() // Access top element const
     {
         return top();
     }
@@ -170,4 +170,4 @@ template <typename T> T& Stack<T>::top()
 
 } // endnamespace
 
-#endif // _eggStack_hpp_INCLUDED_
+#endif // _egglibStack_hpp_INCLUDED_

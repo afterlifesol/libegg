@@ -1,41 +1,38 @@
 #Objects needed to build the test file
-OBJS = eggList_Test.o eggStack_Test.o eggInfo.o
+OBJS = TestList.o TestStack.o egglibTest.o egglibInfo.o
 
 #will be using c++11 standard
 CXXFLAGS = -std=c++11 -Wfatal-errors
 
-all : eggList eggStack eggInfo
+all : egglibInfo egglibTest
 
 #exucutiable in ./bin
-eggInfo : eggInfo.o
+egglibInfo : 
 		@mkdir -p bin
-		$(CXX) $(CXXFLAGS)   -o bin/eggInfo eggInfo.cpp
+		$(CXX) $(CXXFLAGS)   -o bin/egglibInfo egglibInfo.cpp
 		@echo "Build - [OK]"
 
 #exucutiable in ./bin
-eggList : eggList_Test.o
-		@mkdir -p bin
-		$(CXX) $(CXXFLAGS)   -o bin/eggList_Test eggList_Test.cpp
-		@echo "Build - [OK]"
+eggInfo : egglibInfo.o
+		@./bin/egglibInfo
 
-eggList_Test : eggList
-		@./bin/eggList_Test
 
-#exucutiable in ./bin
-eggStack : eggStack_Test.o
-		@mkdir -p bin
-		$(CXX) $(CXXFLAGS)   -o bin/eggStack_Test eggStack_Test.cpp
-		@echo "Build - [OK]"
-
-eggStack_Test : eggStack
-		@./bin/eggStack_Test
+TestList : TestList.o
+TestStack : TestStack.o
 
 #exucutiable in ./bin
-Tests : eggList_Test eggStack_Test
+egglibTest : TestList.o TestStack.o egglibTest.o
+		@mkdir -p bin
+		$(CXX) $(CXXFLAGS)   -o bin/egglibTest TestList.o TestStack.o egglibTest.o
+		@echo "Build - [OK]"
+
+#exucutiable in ./bin
+eggTest : egglibTest
+		@./bin/egglibTest
 
 .PHONY : clean
 clean:
-		@rm $(OBJS)
-		@rm ./bin/*
+		@rm -f $(OBJS)
+		@rm -f ./bin/*
 		@rmdir bin
 		@echo "clean - [OK]"
