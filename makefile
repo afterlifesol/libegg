@@ -1,10 +1,16 @@
 #Objects needed to build the test file
-OBJS = eggList_Test.o eggStack_Test.o
+OBJS = eggList_Test.o eggStack_Test.o eggInfo.o
 
 #will be using c++11 standard
 CXXFLAGS = -std=c++11 -Wfatal-errors
 
-all : eggList eggStack
+all : eggList eggStack eggInfo
+
+#exucutiable in ./bin
+eggInfo : eggInfo.o
+		@mkdir -p bin
+		$(CXX) $(CXXFLAGS)   -o bin/eggInfo eggInfo.cpp
+		@echo "Build - [OK]"
 
 #exucutiable in ./bin
 eggList : eggList_Test.o
@@ -25,7 +31,7 @@ eggStack_Test : eggStack
 		@./bin/eggStack_Test
 
 #exucutiable in ./bin
-Tests : eggList eggStack
+Tests : eggList_Test eggStack_Test
 
 .PHONY : clean
 clean:

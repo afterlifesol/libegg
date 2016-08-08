@@ -83,13 +83,23 @@ int main(int argc, char** argv)
 
     section("Pushing numbers to list: push(*)");
 
-    for(int i = 0; i < 10000; i++)
+    for(int i = 0; i < 5000000; i++)
         S.push(i);
 
-    checkline(10000 == S.size(), "\tsize() Test \tExpected:10000 \tFound:", S.size());
+    checkline(5000000 == S.size(), "\tsize() Test \tExpected:5000000 \tFound:", S.size());
 
-    for(int i = 0; i < 11000; i++)
+    bool error=false;
+    for(int i=4999999;i>=0;i--)
+    {
+        if (S.peek() != i) {
+            error=true;
+            cout << i << "==" << S.peek() << endl;
+        }
         S.pop();
+    }
+
+    if (error) note ("[ERROR]");
+        else note ("[OK]");
 
     S.clear();
 
