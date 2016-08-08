@@ -2,15 +2,20 @@
 
 	C++14 STD tools and data structures.
 
+## eggInfo
+
+    Displays basic infromation about "type"s
+        Min / Max / Size(Bytes)
+
 ## eggList (eggList.hpp)
 
     LinkedList
-        Simple Linked list (Single links) 
+        Simple Linked list (Single links)
         Support for c++14's range based for looping
         Array style access syntax.
 
     template <typename T> class LinkedList
-	
+
     *** Iterator ***
 
         Iter begin()                        // Return iterator to beginning
@@ -23,18 +28,17 @@
         //crend()                           // Return const_reverse_iterator to reverse end
 
     *** Capacity ***
-        bool empty()                        // Test whether container is empty 
-        int  size()                         // Return size 
+        bool empty()                        // Test whether container is empty
+        int  size()                         // Return size
         //int max_size();                   // Return maximum size
 
     *** Element access ***
         const value_type& front() const;    // Access first element
         value_type& front();                // Access first element
-
         const value_type& back() const;     // Access last element
         value_type& back();                 // Access last element
 
-   *** Modifiers ***
+    *** Modifiers ***
         //assign                                 // Assign new content to container
         //emplace_front                          // Construct and insert element at beginning
         void push_front(const value_type& val);  // Insert element at beginning
@@ -61,18 +65,18 @@
 	*** Array Type [index] Operatiors ***
         const value_type& operator[] (int index) const   // return const Ref to the Data at index
         value_type& operator[] (int index)               // return Ref to the Data at index
-        
+
     *** Expextions ***
 		Will throw expections on out of index errors
-	
-    
+
+
 ## eggStack (eggStack.hpp)
 
     Stack
-        Simple Stack Template 
+        Simple Stack Template
 
     template <typename T> class Stack
-    
+
     *** Capacity ***
         bool empty()                        // Check if stack is empty
         int size()                          // Return number of item in the stack
@@ -101,6 +105,6 @@
 
 ## eggList_Test (eggList_Test.cpp)
         Tests for LinkedList
-        
+
 ## eggList_Stack (eggStack_Test.cpp)
         Tests for Stack
