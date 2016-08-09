@@ -84,7 +84,7 @@ int TestList()
 
 
     cout << "Testing push_back(...), back() and pop_back()" << endl;
-    cout << "push_backing...";
+    cout << "push_backing..." << endl;
     for(int i = 0; i < LARGEALLOCATION; i++)
     { 
         list.push_back(i);

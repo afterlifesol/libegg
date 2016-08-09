@@ -1,5 +1,4 @@
-#ifndef _libeggCheck_h_INCLUDED_
-#define _libeggCheck_h_INCLUDED_
+#pragma once
 
 #include <iostream>
 using std::cout;
@@ -69,4 +68,3 @@ template <typename T> void eggChk(T expected, T got, const char* Message, int mc
 
 } // close namespace egg
 
-#endif // _libeggCheck_h_INCLUDED_
