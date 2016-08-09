@@ -74,6 +74,9 @@ RELESECXXFLAGS = -O2 -g -DDEBUG
 #
 
 
+#EXE
+libeggEquIndex : libeggEquIndex.o
+	$(CXX) $(CXXFLAGS) -o $(DIR)/$@ $(filter %.c %.cpp %.o %.a, $?)
 
 TestStack : TestStack.o libeggStack.hpp
 	$(CXX) -c $(CXXFLAGS) -o $(DIR)/$@ $<
@@ -81,12 +84,13 @@ TestStack : TestStack.o libeggStack.hpp
 TestList : TestList.o libeggList.hpp
 	$(CXX) -c $(CXXFLAGS) -o $(DIR)/$@ $<
 
-libeggInfo : libeggInfo.o
-	$(CXX) $(CXXFLAGS) -o $(DIR)/$@ $<
+#EXE
+libeggInfo : libeggInfo.cpp
+	$(CXX) $(CXXFLAGS) -o $(DIR)/$@ $(filter %.c %.cpp %.o %.a, $?)
 
-
+#EXE
 libeggTest : libeggTest.cpp TestStack.o TestList.o libeggCheck.o libeggCheck.h libeggStack.hpp libeggList.hpp
-	$(CXX) $(CXXFLAGS) -o $(DIR)/$@ $? 
+	$(CXX) $(CXXFLAGS) -o $(DIR)/$@ $(filter %.c %.cpp %.o %.a, $?)
 
 
 
