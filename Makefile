@@ -85,7 +85,7 @@ libeggInfo : libeggInfo.o
 	$(CXX) $(CXXFLAGS) -o $(DIR)/$@ $<
 
 
-libeggTest : libeggTest.cpp TestStack.o TestList.o libeggCheck.hpp libeggStack.hpp libeggList.hpp
+libeggTest : libeggTest.cpp TestStack.o TestList.o libeggCheck.o libeggCheck.h libeggStack.hpp libeggList.hpp
 	$(CXX) $(CXXFLAGS) -o $(DIR)/$@ $? 
 
 
