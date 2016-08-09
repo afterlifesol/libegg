@@ -1,10 +1,6 @@
 #ifndef _libeggList_hpp_INCLUDED_
 #define _libeggList_hpp_INCLUDED_
 
-#include <iostream>
-using namespace std;
-
-
 //#include <exception>
 #include <stdexcept>
 using std::out_of_range;
@@ -288,7 +284,10 @@ template <typename value_type> void LinkedList<value_type>::pop_back()
     }
     node* tp = tail;
     tail = tail->prev;
-    if (tail) tail->next = nullptr;
+    
+    //make sure you just didn't set tail to a nullptr then try to access it.
+    if (tail) tail->next = nullptr; 
+    
     tp->prev = tp->next = nullptr;
     delete tp;
     nodes--;

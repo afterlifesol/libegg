@@ -9,8 +9,8 @@ using std::endl;
 
 using namespace egg;
 
-    #define LARGEALLOCATION 50000000
-    #define DOTNUM 100000
+    #define LARGEALLOCATION 500000
+    #define DOTNUM 10000
 
 
 int TestList()

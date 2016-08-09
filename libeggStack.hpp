@@ -1,9 +1,7 @@
 #ifndef _libeggStack_hpp_INCLUDED_
 #define _libeggStack_hpp_INCLUDED_
 
-//#include <exception>
 #include <stdexcept>
-
 using std::out_of_range;
 using std::invalid_argument;
 

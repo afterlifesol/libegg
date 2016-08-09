@@ -8,11 +8,15 @@ using std::flush;
 
 using namespace egg;
 
+#define LARGEALLOCATION 500000
+#define DOTNUM 10000
+
+
 int TestStack()
 {
     
-    TestCol=5;
-    TestMCol=15;    
+    TestCol=10;
+    TestMCol=25;    
     
     cout << endl << endl;
     cout << "Testing Stack [START]" << endl;
@@ -23,8 +27,7 @@ int TestStack()
     eggChk(0,S.size(),"Size");
 
     cout << "Running large allocation." << endl;
-    #define LARGEALLOCATION 50000
-    #define DOTNUM 1000
+
     for(int i = 0; i < LARGEALLOCATION; i++)
     { 
         S.push(i);
