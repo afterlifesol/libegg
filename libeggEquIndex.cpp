@@ -4,6 +4,17 @@ using std::endl;
 #include <iomanip>
 using std::setw;
 
+
+#include <thread>
+#include <mutex>
+#include <future>
+
+// #include <chrono>
+
+
+
+
+
 #include <vector>
 using std::vector;
 
@@ -18,10 +29,52 @@ uint32_t RandSeed = 1120;
 
 MersenneTwister RandEng(RandSeed);
 
-int EquIndex(const vector<int> &v) {
-    int64_t sum=0;
-    int64_t rightsum=0;
+
+int64_t vsum(const vector<int> &v)
+{
+    int sum=0;
     for(const auto &i : v) sum += i;
+    return sum;
+}
+
+
+
+
+int64_t t_sumPartial(const vector<int> &v, const int start, const int end) {
+    thread_local int64_t sum = 0;
+    for(thread_local decltype(v.size()) i=start; i<end; i++)
+        sum += v[i];
+    return sum;
+}
+
+
+
+int64_t t_sum(const vector<int> &v)
+{
+
+    int64_t sum=0;
+
+    const int splitsize = v.size()/4;
+
+    vector<std::future<int64_t>> futures;
+
+    for(int i=0;i<4;i++)
+        futures.emplace_back( std::async(std::launch::async, t_sumPartial, std::ref(v), splitsize*i, splitsize*(i+1) ) );
+        
+//  cout << v.size() << " : " << splitsize*0 << " " << splitsize*1 << " " << splitsize*2 << " " << splitsize*3 << " " << splitsize*4 << endl; 
+  
+
+    for (auto &fut : futures)
+        sum += fut.get();
+
+    return sum;
+}
+
+
+
+int EquIndex(const vector<int> &v) {
+    int64_t sum=t_sum(v);
+    int64_t rightsum=0;
     vector<int>::size_type index = 0;
     for(const auto &i: v)
     {
@@ -46,6 +99,10 @@ bool IsEquIndex(const vector<int> &v, const vector<int>::size_type index) {
     if (leftsum == rightsum) return true;
     return false;
 }
+
+
+
+
 
 
 int main() 

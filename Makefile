@@ -16,7 +16,7 @@ CXX = g++
 #
 #add '-Werror' to make warrings into errors
 #cpp flags
-CXXFLAGS = -std=c++11 -Wall -Wextra -Wconversion -Wfatal-errors
+CXXFLAGS = -std=c++11 -pthread -Wall -Wextra -Wconversion -Wfatal-errors
 #debug flags
 DEBUGCXXFLAGS = -g3 -O0 -DDEBUG
 #release flags
