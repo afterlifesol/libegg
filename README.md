@@ -1,11 +1,7 @@
 # libegg
 C++11 tools and data structures
 
----
-
 ## Tools about types
-
----
 
 #### libeggInfo
 
@@ -13,8 +9,6 @@ Compile time information about data types: Minimum, maximum and size.
 Covers most basic data types. Useful when testing difference architectures.
 
 ## Math tools
-
----
 
 #### libeggMath
 
@@ -27,8 +21,6 @@ Check for overflow before operations for very sensitive data
 ```
 
 ## Containers
-
----
 
 #### libeggList
 
@@ -61,15 +53,11 @@ dynamic node based simple stack template
 
 ## Logging
 
----
-
 #### libeggLog
 
 Tools to support logging to file and debugging.
 
 ## Testing Support
-
----
 
 #### libeggCheck
 
